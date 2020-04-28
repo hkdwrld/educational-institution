@@ -1,0 +1,26 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation" style=""> <span class="navbar-toggler-icon"></span> </button>      
+      <div class="collapse navbar-collapse text-center justify-content-center" id="navbar3SupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item mx-3">
+            <a class="nav-link text-light" href="{% url 'sites:home' %}"><b>Home</b></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if request.user.is_authenticated %}
+            <li>
+              <span class="text-right">Hello, {{request.user.username}}</span>
+            </li>
+            <li>
+              <a class="btn navbar-btn btn-secondary mx-2 shadowed" href="{% url 'account:logout' %}"><b>Logout</b></a>
+            </li>
+            {% else %}
+            <li>
+              <a class="btn navbar-btn btn-secondary mx-2 shadowed" href="{% url 'account:login' %}"><b>Login</b></a>
+            </li>
+            {% endif %}
+        </ul>
+      </div>
+</nav>

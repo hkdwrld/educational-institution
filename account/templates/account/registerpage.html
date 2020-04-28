@@ -1,0 +1,63 @@
+{% extends 'account/main.html' %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="form-group">
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-danger"> {{ message }} </div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+
+
+  <div class="py-5 section-fade-in-out" id="book" style="background-image: url(&quot;assets/restaurant/makereservation_dark.jpg&quot;);" >
+    <div class="container">
+      <div class="row animate-in-down">
+        <div class="col-lg-6 mx-auto p-3">
+          <form class="p-4 bg-primary shadowed" method="post" action="" oninput='password2.setCustomValidity(password2.value != password1.value ? "Passwords do not match." : "")'>
+		  	{% csrf_token %}
+            <h4 class="mb-4 text-center"><mark class="secondary">Register</mark></h4>
+			<div class="form-group"> <label>Username</label>
+				{{form.username}}
+            </div>
+            <div class="form-group"> <label>Email</label>
+				{{form.email}}
+            </div>
+            <div class="form-group"> <label>Password</label>
+				{{form.password1}}
+			</div>
+			<div class="form-group"> <label>Confirm Password</label>
+				{{form.password2}}
+			</div>
+			<div class="form-group"> <label>Register As</label>
+				{{ form.access}}
+			</div>
+            <button type="submit" class="btn mt-4 btn-block p-2 btn-dark"><b>Register</b></button>
+          </form>
+		  <p class="my-4">Already have an account? <a href="{% url 'account:login' %}" class="ml-2">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+	var form_fields = document.getElementsByTagName('input')
+	form_fields[1].placeholder='Username..';
+	form_fields[2].placeholder='Email..';
+	form_fields[3].placeholder='Enter password...';
+	form_fields[4].placeholder='Re-Enter password...';
+
+	for (var field in form_fields){	
+		form_fields[field].className = 'form-control'
+	}
+
+	var select_field = document.getElementsByTagName('select')
+	select_field[0].className = 'custom-select'
+
+</script>
+
+{% endblock %}
+
